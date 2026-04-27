@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kiran Rahul Pabboju — Software Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Cabinet+Grotesk:wght@300;400;500;700;800&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #080810; --surface: #0e0e1a; --border: rgba(255,255,255,0.07);
+  --text: #eeeef5; --muted: #7070a0;
+  --c1: #ff4d6d; --c2: #ffd60a; --c3: #06ffa5; --c4: #7c5cfc; --c5: #00c2ff;
+}
+html { scroll-behavior: smooth; }
+body { background: var(--bg); color: var(--text); font-family: 'Cabinet Grotesk', sans-serif; overflow-x: hidden; cursor: none; }
+
+.cursor { position: fixed; width: 10px; height: 10px; background: var(--c2); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.15s, background 0.2s; }
+.cursor-ring { position: fixed; width: 38px; height: 38px; border: 1.5px solid rgba(255,214,10,0.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.08s ease; }
+.cursor.hovering { transform: translate(-50%,-50%) scale(2.5); background: var(--c3); }
+
+body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(124,92,252,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(124,92,252,0.04) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+
+.blob { position: fixed; border-radius: 50%; filter: blur(110px); pointer-events: none; z-index: 0; opacity: 0.15; animation: blobmove 12s ease-in-out infinite alternate; }
+.b1 { width: 700px; height: 700px; background: radial-gradient(var(--c4), transparent); top: -200px; right: -100px; }
+.b2 { width: 500px; height: 500px; background: radial-gradient(var(--c1), transparent); bottom: 0; left: -100px; animation-delay: -4s; animation-direction: alternate-reverse; }
+.b3 { width: 350px; height: 350px; background: radial-gradient(var(--c5), transparent); top: 45%; left: 40%; animation-delay: -8s; }
+@keyframes blobmove { from { transform: translate(0,0) scale(1); } to { transform: translate(40px,-40px) scale(1.08); } }
+
+nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 20px 60px; display: flex; justify-content: space-between; align-items: center; backdrop-filter: blur(24px); background: rgba(8,8,16,0.6); border-bottom: 1px solid var(--border); }
+.logo { font-family: 'Clash Display', sans-serif; font-size: 1.1rem; font-weight: 700; display: flex; align-items: center; gap: 10px; }
+.logo-dot { width: 8px; height: 8px; background: var(--c3); border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(6,255,165,0.4); } 50% { box-shadow: 0 0 0 8px rgba(6,255,165,0); } }
+.nav-links { display: flex; gap: 40px; }
+.nav-links a { font-size: 0.82rem; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+.nav-links a:hover { color: var(--text); }
+
+.hero { min-height: 100vh; display: grid; place-items: center; padding: 120px 60px 80px; position: relative; z-index: 1; text-align: center; }
+.hero-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: var(--c3); margin-bottom: 36px; animation: fadeUp 0.8s ease both; }
+.hero-eyebrow::before, .hero-eyebrow::after { content: ''; height: 1px; width: 36px; background: var(--c3); opacity: 0.5; }
+h1 { font-family: 'Clash Display', sans-serif; font-size: clamp(4.5rem, 11vw, 9.5rem); font-weight: 700; line-height: 0.9; letter-spacing: -0.04em; margin-bottom: 36px; animation: fadeUp 0.8s ease 0.1s both; }
+.italic-word { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; background: linear-gradient(135deg, var(--c1) 0%, var(--c2) 50%, var(--c3) 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+.hero-sub { font-size: clamp(1rem, 1.4vw, 1.1rem); color: var(--muted); max-width: 560px; margin: 0 auto 52px; line-height: 1.75; animation: fadeUp 0.8s ease 0.2s both; }
+.hero-cta { display: flex; gap: 14px; justify-content: center; flex-wrap: wrap; animation: fadeUp 0.8s ease 0.3s both; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 15px 30px; border-radius: 100px; font-size: 0.88rem; font-weight: 700; letter-spacing: 0.02em; text-decoration: none; transition: all 0.25s; font-family: 'Cabinet Grotesk', sans-serif; }
+.btn-fill { background: var(--text); color: var(--bg); }
+.btn-fill:hover { background: var(--c2); transform: translateY(-3px); box-shadow: 0 16px 40px rgba(255,214,10,0.25); }
+.btn-outline { background: transparent; color: var(--text); border: 1px solid var(--border); }
+.btn-outline:hover { border-color: rgba(255,255,255,0.25); background: rgba(255,255,255,0.04); transform: translateY(-3px); }
+
+.marquee-wrap { overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); padding: 18px 0; position: relative; z-index: 1; background: rgba(255,255,255,0.01); }
+.marquee-track { display: flex; animation: marquee 30s linear infinite; width: max-content; }
+.m-item { display: flex; align-items: center; gap: 20px; padding: 0 28px; font-size: 0.75rem; font-weight: 700; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); white-space: nowrap; }
+.m-dot { width: 5px; height: 5px; border-radius: 50%; flex-shrink: 0; }
+@keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+section { max-width: 1200px; margin: 0 auto; padding: 120px 60px; position: relative; z-index: 1; }
+.s-tag { display: inline-flex; align-items: center; gap: 10px; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 20px; }
+.s-tag::before { content: ''; width: 20px; height: 1px; background: var(--muted); }
+.s-h2 { font-family: 'Clash Display', sans-serif; font-size: clamp(2.5rem, 5vw, 4.2rem); font-weight: 700; letter-spacing: -0.03em; line-height: 1.05; margin-bottom: 64px; }
+
+.bento { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+.bc { background: var(--surface); border: 1px solid var(--border); border-radius: 20px; padding: 32px; position: relative; overflow: hidden; transition: transform 0.3s, border-color 0.3s; }
+.bc:hover { transform: translateY(-4px); border-color: rgba(255,255,255,0.14); }
+.bc::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px; border-radius: 20px 20px 0 0; }
+.c1{grid-column:span 5;} .c2{grid-column:span 7;} .c3{grid-column:span 4;} .c4{grid-column:span 4;} .c5{grid-column:span 4;} .cw{grid-column:span 12;}
+.r1::before{background:var(--c1);} .r2::before{background:var(--c2);} .r3::before{background:var(--c3);} .r4::before{background:var(--c4);} .r5::before{background:var(--c5);}
+.c-emoji { font-size: 2.2rem; margin-bottom: 18px; display: block; }
+.c-title { font-family: 'Clash Display', sans-serif; font-size: 1.05rem; font-weight: 600; margin-bottom: 16px; }
+.c-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; margin-bottom: 18px; }
+.tags { display: flex; flex-wrap: wrap; gap: 7px; }
+.tag { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted); padding: 4px 13px; border-radius: 100px; font-size: 0.73rem; font-weight: 600; transition: all 0.2s; }
+.tag:hover { background: rgba(255,255,255,0.1); color: var(--text); }
+.stat-row { display: flex; gap: 56px; align-items: center; flex-wrap: wrap; }
+.s-num { font-family: 'Clash Display', sans-serif; font-size: 3.2rem; font-weight: 700; letter-spacing: -0.04em; line-height: 1; }
+.s-lbl { font-size: 0.72rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; margin-top: 5px; font-weight: 700; }
+
+.exp-list { display: flex; flex-direction: column; gap: 3px; }
+.exp-item { background: var(--surface); border: 1px solid var(--border); border-radius: 18px; padding: 30px 40px; display: grid; grid-template-columns: 70px 1fr auto; align-items: center; gap: 28px; transition: all 0.3s; position: relative; overflow: hidden; }
+.exp-item::after { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 3px; opacity: 0; transition: opacity 0.3s; }
+.exp-item:nth-child(1)::after{background:var(--c1);} .exp-item:nth-child(2)::after{background:var(--c2);} .exp-item:nth-child(3)::after{background:var(--c3);}
+.exp-item:hover { border-color: rgba(255,255,255,0.14); transform: translateX(6px); }
+.exp-item:hover::after { opacity: 1; }
+.e-year { font-size: 0.7rem; font-weight: 700; color: var(--muted); letter-spacing: 0.04em; text-align: center; line-height: 1.4; }
+.e-role { font-family: 'Clash Display', sans-serif; font-size: 1.1rem; font-weight: 600; margin-bottom: 4px; }
+.e-co { font-size: 0.85rem; color: var(--c3); font-weight: 600; margin-bottom: 10px; }
+.e-desc { font-size: 0.85rem; color: var(--muted); line-height: 1.65; max-width: 580px; }
+.e-badge { background: rgba(255,255,255,0.05); border: 1px solid var(--border); color: var(--muted); padding: 6px 16px; border-radius: 100px; font-size: 0.73rem; font-weight: 700; white-space: nowrap; }
+
+.proj { background: var(--surface); border: 1px solid var(--border); border-radius: 24px; overflow: hidden; }
+.proj-bar { padding: 18px 30px; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 12px; background: rgba(255,255,255,0.02); }
+.dots { display: flex; gap: 7px; }
+.dot { width: 11px; height: 11px; border-radius: 50%; }
+.dot.r{background:#ff5f57;} .dot.y{background:#febc2e;} .dot.g{background:#28c840;}
+.proj-url { flex: 1; text-align: center; font-size: 0.75rem; color: var(--muted); }
+.proj-body { padding: 48px; }
+.proj-head { display: flex; align-items: flex-start; gap: 22px; margin-bottom: 28px; }
+.proj-ico { width: 62px; height: 62px; background: linear-gradient(135deg, var(--c1), var(--c4)); border-radius: 18px; display: flex; align-items: center; justify-content: center; font-size: 1.9rem; flex-shrink: 0; }
+.proj-name { font-family: 'Clash Display', sans-serif; font-size: 1.7rem; font-weight: 700; letter-spacing: -0.02em; margin-bottom: 5px; }
+.proj-sub { font-size: 0.82rem; color: var(--muted); }
+.proj-text { font-size: 0.98rem; color: var(--muted); line-height: 1.8; margin-bottom: 36px; max-width: 680px; }
+.feat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 10px; margin-bottom: 40px; }
+.feat { background: rgba(255,255,255,0.03); border: 1px solid var(--border); border-radius: 12px; padding: 13px 17px; display: flex; align-items: center; gap: 12px; font-size: 0.83rem; color: var(--muted); font-weight: 500; transition: all 0.2s; }
+.feat:hover { background: rgba(255,255,255,0.07); color: var(--text); }
+.fd { width: 8px; height: 8px; border-radius: 50%; flex-shrink: 0; }
+.proj-links { display: flex; gap: 14px; flex-wrap: wrap; }
+.plink { display: inline-flex; align-items: center; gap: 9px; color: var(--text); text-decoration: none; font-weight: 700; font-size: 0.88rem; padding: 13px 26px; background: rgba(255,255,255,0.05); border: 1px solid var(--border); border-radius: 100px; transition: all 0.2s; }
+.plink:hover { background: var(--c3); color: var(--bg); border-color: var(--c3); transform: translateY(-2px); box-shadow: 0 12px 30px rgba(6,255,165,0.2); }
+.plink.p2:hover { background: var(--c4); color: #fff; border-color: var(--c4); box-shadow: 0 12px 30px rgba(124,92,252,0.25); }
+.plink.p3 { color: var(--c2); border-color: rgba(255,214,10,0.25); }
+.plink.p3:hover { background: var(--c2); color: var(--bg); border-color: var(--c2); box-shadow: 0 12px 30px rgba(255,214,10,0.2); }
+
+.contact-sec { text-align: center; padding: 60px 60px 120px; position: relative; z-index: 1; }
+.contact-big { font-family: 'Clash Display', sans-serif; font-size: clamp(3.5rem, 9vw, 7.5rem); font-weight: 700; letter-spacing: -0.04em; line-height: 0.95; margin-bottom: 56px; }
+.contact-big em { font-family: 'Instrument Serif', serif; font-style: italic; font-weight: 400; color: var(--c2); }
+.cgrid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 14px; max-width: 900px; margin: 0 auto; }
+.cpill { display: flex; align-items: center; gap: 14px; background: var(--surface); border: 1px solid var(--border); border-radius: 16px; padding: 20px 22px; text-decoration: none; color: var(--text); transition: all 0.25s; }
+.cpill:hover { transform: translateY(-4px); }
+.cpill:nth-child(1):hover{border-color:var(--c1);box-shadow:0 12px 30px rgba(255,77,109,0.15);}
+.cpill:nth-child(2):hover{border-color:var(--c5);box-shadow:0 12px 30px rgba(0,194,255,0.15);}
+.cpill:nth-child(3):hover{border-color:var(--c4);box-shadow:0 12px 30px rgba(124,92,252,0.15);}
+.cpill:nth-child(4):hover{border-color:var(--c3);box-shadow:0 12px 30px rgba(6,255,165,0.15);}
+.p-ico { width: 44px; height: 44px; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; flex-shrink: 0; }
+.p-lbl { font-size: 0.68rem; color: var(--muted); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 700; margin-bottom: 3px; }
+.p-val { font-size: 0.85rem; font-weight: 600; }
+
+footer { border-top: 1px solid var(--border); padding: 26px 60px; display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; font-size: 0.8rem; color: var(--muted); }
+footer a { color: var(--muted); text-decoration: none; transition: color 0.2s; }
+footer a:hover { color: var(--text); }
+
+@keyframes fadeUp { from{opacity:0;transform:translateY(28px);}to{opacity:1;transform:translateY(0);} }
+.reveal { opacity: 0; transform: translateY(36px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+
+::-webkit-scrollbar{width:4px;} ::-webkit-scrollbar-track{background:var(--bg);} ::-webkit-scrollbar-thumb{background:rgba(255,255,255,0.08);border-radius:2px;}
+
+@media(max-width:900px){
+  nav,footer{padding-left:24px;padding-right:24px;}
+  section,.contact-sec{padding-left:24px;padding-right:24px;}
+  .hero{padding:100px 24px 60px;}
+  .bento{grid-template-columns:1fr 1fr;}
+  .c1,.c2,.c3,.c4,.c5,.cw{grid-column:span 2;}
+  .exp-item{grid-template-columns:1fr;} .e-year,.e-badge{display:none;}
+  .stat-row{gap:28px;justify-content:center;}
+  .nav-links{display:none;}
+  footer{flex-direction:column;gap:8px;text-align:center;}
+  .proj-body{padding:28px;}
+}
+</style>
+</head>
+<body>
+
+<div class="cursor" id="cur"></div>
+<div class="cursor-ring" id="curR"></div>
+<div class="blob b1"></div>
+<div class="blob b2"></div>
+<div class="blob b3"></div>
+
+<nav>
+  <div class="logo"><div class="logo-dot"></div>KRP</div>
+  <div class="nav-links">
+    <a href="#skills">Skills</a>
+    <a href="#experience">Experience</a>
+    <a href="#project">Project</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<div class="hero">
+  <div>
+    <div class="hero-eyebrow">Available · US Work Authorized · OPT</div>
+    <h1>
+      <span style="display:block">Software</span>
+      <span style="display:block"><span class="italic-word">Engineer</span> &amp;</span>
+      <span style="display:block">Security</span>
+    </h1>
+    <p class="hero-sub">Building backend systems, REST APIs, and AI-powered security tools.<br>2 years at Cognizant · M.S. Cybersecurity · Java · Python · Spring Boot</p>
+    <div class="hero-cta">
+      <a href="#contact" class="btn btn-fill">Let's Connect →</a>
+      <a href="https://github.com/rahuldev7-web" target="_blank" class="btn btn-outline">GitHub ↗</a>
+      <a href="https://linkedin.com/in/pabboju-kiran-rahul" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+    </div>
+  </div>
+</div>
+
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <div class="m-item"><span class="m-dot" style="background:var(--c1)"></span>Java</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c2)"></span>Spring Boot</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c3)"></span>Python</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c4)"></span>REST APIs</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c5)"></span>PostgreSQL</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c1)"></span>Microservices</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c2)"></span>AWS</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c3)"></span>Cybersecurity</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c4)"></span>Machine Learning</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c5)"></span>Agile</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c1)"></span>OWASP</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c2)"></span>Git</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c1)"></span>Java</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c2)"></span>Spring Boot</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c3)"></span>Python</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c4)"></span>REST APIs</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c5)"></span>PostgreSQL</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c1)"></span>Microservices</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c2)"></span>AWS</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c3)"></span>Cybersecurity</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c4)"></span>Machine Learning</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c5)"></span>Agile</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c1)"></span>OWASP</div>
+    <div class="m-item"><span class="m-dot" style="background:var(--c2)"></span>Git</div>
+  </div>
+</div>
+
+<section id="skills">
+  <div class="s-tag">What I bring</div>
+  <h2 class="s-h2">Technical Skills</h2>
+  <div class="bento">
+    <div class="bc c1 r1 reveal">
+      <span class="c-emoji">⚡</span>
+      <div class="c-title">Backend Development</div>
+      <div class="tags"><span class="tag">Java 8/JEE</span><span class="tag">Spring Boot</span><span class="tag">REST APIs</span><span class="tag">Microservices</span><span class="tag">Maven</span><span class="tag">JDBC</span></div>
+    </div>
+    <div class="bc c2 r2 reveal" style="transition-delay:.1s">
+      <span class="c-emoji">🐍</span>
+      <div class="c-title">Python & AI/ML</div>
+      <div class="c-desc">Built real-time anomaly detection, automated ML pipelines, and security monitoring tools from scratch.</div>
+      <div class="tags"><span class="tag">Python</span><span class="tag">ML Pipelines</span><span class="tag">Anomaly Detection</span><span class="tag">Data Analysis</span><span class="tag">GenAI</span></div>
+    </div>
+    <div class="bc c3 r3 reveal" style="transition-delay:.15s">
+      <span class="c-emoji">🗄️</span>
+      <div class="c-title">Databases</div>
+      <div class="tags"><span class="tag">PostgreSQL</span><span class="tag">SQL Server</span><span class="tag">Oracle</span><span class="tag">Query Optimization</span></div>
+    </div>
+    <div class="bc c4 r4 reveal" style="transition-delay:.2s">
+      <span class="c-emoji">🔐</span>
+      <div class="c-title">Cybersecurity</div>
+      <div class="tags"><span class="tag">OWASP Top 10</span><span class="tag">IAM</span><span class="tag">Audit Logging</span><span class="tag">Secure Coding</span></div>
+    </div>
+    <div class="bc c5 r5 reveal" style="transition-delay:.25s">
+      <span class="c-emoji">☁️</span>
+      <div class="c-title">Cloud & Tools</div>
+      <div class="tags"><span class="tag">AWS</span><span class="tag">Azure</span><span class="tag">Git</span><span class="tag">Linux</span><span class="tag">CI/CD</span></div>
+    </div>
+    <div class="bc cw r1 reveal" style="transition-delay:.3s">
+      <div class="stat-row">
+        <div><div class="s-num" style="color:var(--c1)">2+</div><div class="s-lbl">Years Exp.</div></div>
+        <div><div class="s-num" style="color:var(--c2)">3.0+</div><div class="s-lbl">GPA (M.S.)</div></div>
+        <div><div class="s-num" style="color:var(--c3)">3</div><div class="s-lbl">GitHub Projects</div></div>
+        <div><div class="s-num" style="color:var(--c4)">10+</div><div class="s-lbl">Technologies</div></div>
+        <div><div class="s-num" style="color:var(--c5)">May '26</div><div class="s-lbl">Graduating</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="experience">
+  <div class="s-tag">Where I've worked</div>
+  <h2 class="s-h2">Experience</h2>
+  <div class="exp-list">
+    <div class="exp-item reveal">
+      <div class="e-year">Jul 2023<br>Nov 2023</div>
+      <div>
+        <div class="e-role">Programmer Analyst</div>
+        <div class="e-co">Cognizant Technology Solutions</div>
+        <div class="e-desc">Built and optimized enterprise backend services and REST APIs in Java + Spring Boot. Reduced SQL query response times by ~35% and defect rates by ~40% through structured TDD and root-cause debugging.</div>
+      </div>
+      <div class="e-badge">Full-Time</div>
+    </div>
+    <div class="exp-item reveal" style="transition-delay:.1s">
+      <div class="e-year">Jul 2022<br>Jul 2023</div>
+      <div>
+        <div class="e-role">Programmer Analyst Trainee</div>
+        <div class="e-co">Cognizant Technology Solutions</div>
+        <div class="e-desc">Owned backend logic for e-commerce cart, checkout, and order workflows end-to-end across 12+ consecutive Agile sprints. Resolved ~50 production tickets with sub-24hr average time-to-fix.</div>
+      </div>
+      <div class="e-badge">Full-Time</div>
+    </div>
+    <div class="exp-item reveal" style="transition-delay:.2s">
+      <div class="e-year">Jan 2022<br>Jun 2022</div>
+      <div>
+        <div class="e-role">Software Development Intern</div>
+        <div class="e-co">Cognizant Technology Solutions</div>
+        <div class="e-desc">Debugged and documented Java enterprise applications. Built foundational skills in version control, SDLC, and secure coding practices.</div>
+      </div>
+      <div class="e-badge">Internship</div>
+    </div>
+  </div>
+</section>
+
+<section id="project">
+  <div class="s-tag">What I've built</div>
+  <h2 class="s-h2">Projects</h2>
+  <div class="proj reveal">
+    <div class="proj-bar">
+      <div class="dots"><div class="dot r"></div><div class="dot y"></div><div class="dot g"></div></div>
+      <div class="proj-url">github.com/rahuldev7-web/network-security-monitor</div>
+    </div>
+    <div class="proj-body">
+      <div class="proj-head">
+        <div class="proj-ico">🛡️</div>
+        <div>
+          <div class="proj-name">Network Security Monitor</div>
+          <div class="proj-sub">AI-Powered Anomaly Detection · Python · Zero Dependencies</div>
+        </div>
+      </div>
+      <p class="proj-text">A real-time network traffic anomaly detection system built entirely in Python with zero external dependencies. Uses a rolling window Z-score statistical engine to dynamically establish behavioral baselines and flag active threats — brute force attacks, data exfiltration, port scanning, and suspicious protocol usage. Detection precision improved by <strong style="color:var(--text)">~30%</strong> through iterative model refinement.</p>
+      <div class="feat-grid">
+        <div class="feat"><div class="fd" style="background:var(--c1)"></div>Statistical ML (Z-score)</div>
+        <div class="feat"><div class="fd" style="background:var(--c2)"></div>Multi-rule threat detection</div>
+        <div class="feat"><div class="fd" style="background:var(--c3)"></div>Risk scoring LOW → CRITICAL</div>
+        <div class="feat"><div class="fd" style="background:var(--c4)"></div>Structured JSON audit logs</div>
+        <div class="feat"><div class="fd" style="background:var(--c5)"></div>Real-time data pipeline</div>
+        <div class="feat"><div class="fd" style="background:var(--c1)"></div>~30% precision improvement</div>
+      </div>
+      <div class="proj-links">
+        <a href="https://github.com/rahuldev7-web/network-security-monitor" target="_blank" class="plink">Network Monitor →</a>
+        <a href="https://github.com/rahuldev7-web/ATS-Resume-Scorer" target="_blank" class="plink p2">ATS Scorer →</a>
+        <a href="https://github.com/rahuldev7-web/job-tracker-api" target="_blank" class="plink p3">Job Tracker API →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="contact-sec" id="contact">
+  <div class="s-tag" style="justify-content:center">Get in touch</div>
+  <div class="contact-big">Let's <em>work</em><br>together</div>
+  <div class="cgrid">
+    <a href="mailto:kiranrahulpabboju@gmail.com" class="cpill">
+      <div class="p-ico" style="background:rgba(255,77,109,0.12)">📧</div>
+      <div><div class="p-lbl">Email</div><div class="p-val">kiranrahulpabboju@gmail.com</div></div>
+    </a>
+    <a href="https://linkedin.com/in/pabboju-kiran-rahul" target="_blank" class="cpill">
+      <div class="p-ico" style="background:rgba(0,194,255,0.12)">💼</div>
+      <div><div class="p-lbl">LinkedIn</div><div class="p-val">pabboju-kiran-rahul</div></div>
+    </a>
+    <a href="https://github.com/rahuldev7-web" target="_blank" class="cpill">
+      <div class="p-ico" style="background:rgba(124,92,252,0.12)">🐙</div>
+      <div><div class="p-lbl">GitHub</div><div class="p-val">rahuldev7-web</div></div>
+    </a>
+    <a href="tel:+18167783514" class="cpill">
+      <div class="p-ico" style="background:rgba(6,255,165,0.12)">📱</div>
+      <div><div class="p-lbl">Phone</div><div class="p-val">+1 816-778-3514</div></div>
+    </a>
+  </div>
+</div>
+
+<footer>
+  <span>Kiran Rahul Pabboju · 2026</span>
+  <span>Kansas City, MO · Open to Relocation</span>
+  <a href="https://github.com/rahuldev7-web" target="_blank">github.com/rahuldev7-web</a>
+</footer>
+
+<script>
+const cur = document.getElementById('cur');
+const curR = document.getElementById('curR');
+let mx=0,my=0,rx=0,ry=0;
+
+document.addEventListener('mousemove',e=>{
+  mx=e.clientX; my=e.clientY;
+  cur.style.left=mx+'px'; cur.style.top=my+'px';
+});
+
+(function loop(){
+  rx+=(mx-rx)*0.12; ry+=(my-ry)*0.12;
+  curR.style.left=rx+'px'; curR.style.top=ry+'px';
+  requestAnimationFrame(loop);
+})();
+
+document.querySelectorAll('a,button').forEach(el=>{
+  el.addEventListener('mouseenter',()=>cur.classList.add('hovering'));
+  el.addEventListener('mouseleave',()=>cur.classList.remove('hovering'));
+});
+
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach((e,i)=>{
+    if(e.isIntersecting) setTimeout(()=>e.target.classList.add('visible'), i*80);
+  });
+},{threshold:0.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
