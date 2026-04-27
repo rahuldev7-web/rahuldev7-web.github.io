@@ -15,6 +15,17 @@
 html { scroll-behavior: smooth; }
 body { background: var(--bg); color: var(--text); font-family: 'Cabinet Grotesk', sans-serif; overflow-x: hidden; cursor: none; }
 
+/* ── SMOKE INTRO ── */
+#smoke-intro { position: fixed; inset: 0; z-index: 99999; pointer-events: none; background: #080810; }
+#smoke-intro canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#smoke-intro .intro-text { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 14px; z-index: 2; }
+#smoke-intro .intro-name { font-family: 'Clash Display', sans-serif; font-size: clamp(2.5rem,7vw,6rem); font-weight: 700; letter-spacing: -0.04em; color: #fff; opacity: 0; transform: translateY(20px); transition: opacity 0.9s ease, transform 0.9s ease; }
+#smoke-intro .intro-role { font-size: clamp(0.85rem,1.4vw,1rem); color: rgba(255,255,255,0.45); letter-spacing: 0.2em; text-transform: uppercase; font-weight: 600; opacity: 0; transition: opacity 0.9s ease 0.25s; }
+#smoke-intro.text-visible .intro-name { opacity: 1; transform: translateY(0); }
+#smoke-intro.text-visible .intro-role { opacity: 1; }
+#smoke-intro.vanish { animation: introVanish 1.3s cubic-bezier(0.4,0,0.2,1) forwards; }
+@keyframes introVanish { 0% { opacity:1; transform:scale(1); filter:blur(0); } 100% { opacity:0; transform:scale(1.06); filter:blur(28px); } }
+
 .cursor { position: fixed; width: 10px; height: 10px; background: var(--c2); border-radius: 50%; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: transform 0.15s, background 0.2s; }
 .cursor-ring { position: fixed; width: 38px; height: 38px; border: 1.5px solid rgba(255,214,10,0.35); border-radius: 50%; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); transition: all 0.08s ease; }
 .cursor.hovering { transform: translate(-50%,-50%) scale(2.5); background: var(--c3); }
@@ -152,6 +163,16 @@ footer a:hover { color: var(--text); }
 
 <div class="cursor" id="cur"></div>
 <div class="cursor-ring" id="curR"></div>
+
+<!-- SMOKE INTRO -->
+<div id="smoke-intro">
+  <canvas id="intro-canvas"></canvas>
+  <div class="intro-text">
+    <div class="intro-name">Kiran Rahul Pabboju</div>
+    <div class="intro-role">I Build Systems. I Break Threats.</div>
+  </div>
+</div>
+
 <div class="blob b1"></div>
 <div class="blob b2"></div>
 <div class="blob b3"></div>
@@ -162,23 +183,26 @@ footer a:hover { color: var(--text); }
     <a href="#skills">Skills</a>
     <a href="#experience">Experience</a>
     <a href="#project">Project</a>
+    <a href="#education">Education</a>
     <a href="#contact">Contact</a>
   </div>
 </nav>
 
 <div class="hero">
   <div>
+    <div style="width:90px;height:90px;border-radius:50%;background:linear-gradient(135deg,var(--c4),var(--c1));display:flex;align-items:center;justify-content:center;font-family:Clash Display,sans-serif;font-size:1.8rem;font-weight:700;color:#fff;margin:0 auto 28px;box-shadow:0 0 40px rgba(124,92,252,0.4);animation:fadeUp 0.8s ease both;border:2px solid rgba(255,255,255,0.1)">KRP</div>
     <div class="hero-eyebrow">Available · US Work Authorized · OPT</div>
     <h1>
-      <span style="display:block">Software</span>
-      <span style="display:block"><span class="italic-word">Engineer</span> &amp;</span>
-      <span style="display:block">Security</span>
+      
+      
+      <span id="typing-target" style="display:block;min-height:1em"></span>
     </h1>
-    <p class="hero-sub">Building backend systems, REST APIs, and AI-powered security tools.<br>2 years at Cognizant · M.S. Cybersecurity · Java · Python · Spring Boot</p>
+    <p class="hero-sub">2 years at Cognizant · M.S. Cybersecurity · Java · Python · Spring Boot · Kansas City, MO</p>
     <div class="hero-cta">
       <a href="#contact" class="btn btn-fill">Let's Connect →</a>
       <a href="https://github.com/rahuldev7-web" target="_blank" class="btn btn-outline">GitHub ↗</a>
       <a href="https://linkedin.com/in/pabboju-kiran-rahul" target="_blank" class="btn btn-outline">LinkedIn ↗</a>
+      <a href="Kiran_Pabboju_Resume.pdf" download class="btn btn-outline" style="border-color:rgba(255,214,10,0.4);color:var(--c2)">Resume ↓</a>
     </div>
   </div>
 </div>
@@ -288,6 +312,35 @@ footer a:hover { color: var(--text); }
   </div>
 </section>
 
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="s-tag">Where I studied</div>
+  <h2 class="s-h2">Education</h2>
+  <div class="exp-list">
+    <div class="exp-item reveal" style="border-left:none">
+      <div class="e-year">2024<br>May 2026</div>
+      <div>
+        <div class="e-role">M.S. Computer &amp; Information Systems Security</div>
+        <div class="e-co" style="color:var(--c2)">University of Central Missouri</div>
+        <div class="e-desc">STEM-designated graduate program. Coursework: Network Security · Information Assurance · Risk Analysis · Digital Forensics · Cloud Security · Cybersecurity Management. GPA: 3.0+</div>
+        <div class="tags" style="margin-top:14px"><span class="tag">Cybersecurity</span><span class="tag">Network Security</span><span class="tag">Risk Analysis</span><span class="tag">Digital Forensics</span><span class="tag">STEM</span><span class="tag">GPA 3.0+</span></div>
+      </div>
+      <div class="e-badge" style="border-color:rgba(255,214,10,0.3);color:var(--c2)">M.S. Degree</div>
+    </div>
+    <div class="exp-item reveal" style="transition-delay:.1s;border-left:none">
+      <div class="e-year">2018<br>2022</div>
+      <div>
+        <div class="e-role">B.Tech Computer Science &amp; Engineering</div>
+        <div class="e-co" style="color:var(--c3)">CMR Institute of Technology</div>
+        <div class="e-desc">Core foundation in algorithms, data structures, OOP, databases, and software engineering. Led to professional career at Cognizant Technology Solutions.</div>
+        <div class="tags" style="margin-top:14px"><span class="tag">Computer Science</span><span class="tag">OOP</span><span class="tag">Data Structures</span><span class="tag">Databases</span><span class="tag">Software Engineering</span></div>
+      </div>
+      <div class="e-badge" style="border-color:rgba(6,255,165,0.3);color:var(--c3)">B.Tech Degree</div>
+    </div>
+  </div>
+</section>
+
 <section id="project">
   <div class="s-tag">What I've built</div>
   <h2 class="s-h2">Projects</h2>
@@ -351,7 +404,199 @@ footer a:hover { color: var(--text); }
   <a href="https://github.com/rahuldev7-web" target="_blank">github.com/rahuldev7-web</a>
 </footer>
 
+<canvas id="smoke" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:0;opacity:0.55"></canvas>
+
 <script>
+
+// ── SMOKE INTRO ─────────────────────────────
+(function() {
+  const intro = document.getElementById("smoke-intro");
+  const ic = document.getElementById("intro-canvas");
+  const cx = ic.getContext("2d");
+  ic.width = window.innerWidth;
+  ic.height = window.innerHeight;
+
+  const cols = ["rgba(124,92,252,","rgba(255,77,109,","rgba(6,255,165,","rgba(0,194,255,","rgba(255,214,10,"];
+
+  function mkP(init) {
+    return {
+      x: Math.random() * ic.width,
+      y: init ? Math.random() * ic.height : ic.height + 80,
+      size: Math.random() * 180 + 80,
+      sx: (Math.random() - 0.5) * 0.6,
+      sy: -(Math.random() * 0.8 + 0.3),
+      life: init ? Math.random() * 120 : 0,
+      maxLife: Math.random() * 140 + 100,
+      col: cols[Math.floor(Math.random() * cols.length)],
+      rot: Math.random() * Math.PI * 2,
+      rs: (Math.random() - 0.5) * 0.006,
+      wob: Math.random() * Math.PI * 2,
+      ws: Math.random() * 0.025 + 0.008
+    };
+  }
+
+  let particles = Array.from({length: 60}, () => mkP(true));
+  let phase = "fill"; // fill -> hold -> vanish
+  let startTime = performance.now();
+  let animId;
+
+  function drawIntroSmoke() {
+    const now = performance.now();
+    const elapsed = now - startTime;
+
+    cx.clearRect(0, 0, ic.width, ic.height);
+
+    // Background darkness
+    let bgAlpha = 0.92;
+    if (phase === "vanish") {
+      const t = (elapsed - 2800) / 1300;
+      bgAlpha = Math.max(0, 0.92 * (1 - t));
+    }
+    cx.fillStyle = "rgba(8,8,16," + bgAlpha + ")";
+    cx.fillRect(0, 0, ic.width, ic.height);
+
+    particles.forEach(p => {
+      p.life++;
+      p.wob += p.ws;
+      p.x += p.sx + Math.sin(p.wob) * 0.5;
+      p.y += p.sy;
+      p.rot += p.rs;
+      p.size += 0.4;
+      if (p.life >= p.maxLife || p.y < -p.size) {
+        Object.assign(p, mkP(false));
+      }
+      const prog = p.life / p.maxLife;
+      let alpha;
+      if (phase === "fill") alpha = prog < 0.3 ? (prog/0.3)*0.18 : prog > 0.7 ? ((1-prog)/0.3)*0.18 : 0.18;
+      else if (phase === "hold") alpha = 0.18;
+      else { const t = Math.max(0,(elapsed-2800)/1300); alpha = Math.max(0, 0.18*(1-t)); }
+
+      cx.save();
+      cx.translate(p.x, p.y);
+      cx.rotate(p.rot);
+      const g = cx.createRadialGradient(0,0,0,0,0,p.size);
+      g.addColorStop(0, p.col + alpha + ")");
+      g.addColorStop(0.5, p.col + (alpha*0.5) + ")");
+      g.addColorStop(1, p.col + "0)");
+      cx.fillStyle = g;
+      cx.beginPath();
+      cx.arc(0, 0, p.size, 0, Math.PI*2);
+      cx.fill();
+      cx.restore();
+    });
+
+    // Show text at 600ms
+    if (elapsed > 600 && phase === "fill") {
+      intro.classList.add("text-visible");
+    }
+
+    // Switch to hold at 1400ms
+    if (elapsed > 1400 && phase === "fill") phase = "hold";
+
+    // Start vanish at 2800ms
+    if (elapsed > 2800 && phase === "hold") {
+      phase = "vanish";
+      intro.classList.add("vanish");
+      document.body.style.overflow = "auto";
+    }
+
+    // Remove intro at 4100ms
+    if (elapsed > 4100) {
+      cancelAnimationFrame(animId);
+      intro.remove();
+      return;
+    }
+
+    animId = requestAnimationFrame(drawIntroSmoke);
+  }
+
+  // Lock scroll during intro
+  document.body.style.overflow = "hidden";
+  animId = requestAnimationFrame(drawIntroSmoke);
+})();
+
+// ── SMOKE EFFECT ──────────────────────────────
+const canvas = document.getElementById('smoke');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+window.addEventListener('resize', () => {
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+});
+
+const colors = [
+  'rgba(124,92,252,',   // purple
+  'rgba(255,77,109,',   // red
+  'rgba(6,255,165,',    // green
+  'rgba(0,194,255,',    // blue
+  'rgba(255,214,10,',   // yellow
+];
+
+class Particle {
+  constructor() { this.reset(true); }
+
+  reset(init = false) {
+    this.x = Math.random() * canvas.width;
+    this.y = init ? Math.random() * canvas.height : canvas.height + 60;
+    this.size = Math.random() * 120 + 40;
+    this.speedY = -(Math.random() * 0.4 + 0.1);
+    this.speedX = (Math.random() - 0.5) * 0.3;
+    this.life = 0;
+    this.maxLife = Math.random() * 180 + 120;
+    this.color = colors[Math.floor(Math.random() * colors.length)];
+    this.rotation = Math.random() * Math.PI * 2;
+    this.rotSpeed = (Math.random() - 0.5) * 0.004;
+    this.wobble = Math.random() * Math.PI * 2;
+    this.wobbleSpeed = Math.random() * 0.02 + 0.005;
+  }
+
+  update() {
+    this.life++;
+    this.wobble += this.wobbleSpeed;
+    this.x += this.speedX + Math.sin(this.wobble) * 0.3;
+    this.y += this.speedY;
+    this.rotation += this.rotSpeed;
+    this.size += 0.15;
+    if (this.life >= this.maxLife || this.y < -this.size) this.reset();
+  }
+
+  draw() {
+    const progress = this.life / this.maxLife;
+    const alpha = progress < 0.2
+      ? (progress / 0.2) * 0.06
+      : progress > 0.7
+        ? ((1 - progress) / 0.3) * 0.06
+        : 0.06;
+
+    ctx.save();
+    ctx.translate(this.x, this.y);
+    ctx.rotate(this.rotation);
+
+    const gradient = ctx.createRadialGradient(0, 0, 0, 0, 0, this.size);
+    gradient.addColorStop(0, this.color + alpha + ')');
+    gradient.addColorStop(0.5, this.color + (alpha * 0.5) + ')');
+    gradient.addColorStop(1, this.color + '0)');
+
+    ctx.fillStyle = gradient;
+    ctx.beginPath();
+    ctx.arc(0, 0, this.size, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.restore();
+  }
+}
+
+// Create particles
+const particles = Array.from({ length: 35 }, () => new Particle());
+
+function animateSmoke() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+  particles.forEach(p => { p.update(); p.draw(); });
+  requestAnimationFrame(animateSmoke);
+}
+animateSmoke();
+
+// ── CURSOR ───────────────────────────────────
 const cur = document.getElementById('cur');
 const curR = document.getElementById('curR');
 let mx=0,my=0,rx=0,ry=0;
@@ -378,6 +623,116 @@ const obs = new IntersectionObserver(entries=>{
   });
 },{threshold:0.1});
 document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+// ── TYPING ANIMATION ─────────────────────────
+(function() {
+  const lines = ["I Build Systems.", "I Break Threats."];
+  const target = document.getElementById("typing-target");
+  if (!target) return;
+
+  // Wait for smoke intro to finish (~3s)
+  setTimeout(() => {
+    let lineIdx = 0, charIdx = 0, deleting = false, looping = false;
+    const cursor = document.createElement("span");
+    cursor.textContent = "|";
+    cursor.style.cssText = "color:var(--c2);animation:blink 0.7s infinite;font-weight:300;";
+
+    const styleEl = document.createElement("style");
+    styleEl.textContent = "@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}";
+    document.head.appendChild(styleEl);
+
+    function type() {
+      const current = lines[lineIdx];
+      if (!deleting) {
+        charIdx++;
+        target.textContent = current.slice(0, charIdx);
+        target.appendChild(cursor);
+        if (charIdx === current.length) {
+          if (!looping) {
+            // First line done — pause then delete
+            setTimeout(() => { deleting = true; type(); }, 900);
+            return;
+          } else {
+            // Final line done — stop, cursor blinks
+            return;
+          }
+        }
+        setTimeout(type, 65);
+      } else {
+        charIdx--;
+        target.textContent = current.slice(0, charIdx);
+        target.appendChild(cursor);
+        if (charIdx === 0) {
+          deleting = false;
+          lineIdx++;
+          if (lineIdx >= lines.length) { lineIdx = 0; looping = true; }
+          setTimeout(type, 400);
+          return;
+        }
+        setTimeout(type, 35);
+      }
+    }
+    type();
+  }, 3200);
+})();
+
+// ── CURSOR PARTICLE TRAIL ────────────────────
+(function() {
+  const trail = [];
+  const colors = ["#ff4d6d","#ffd60a","#06ffa5","#7c5cfc","#00c2ff"];
+  let mx = 0, my = 0;
+
+  const tc = document.createElement("canvas");
+  tc.style.cssText = "position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9997;";
+  tc.width = window.innerWidth;
+  tc.height = window.innerHeight;
+  document.body.appendChild(tc);
+  const tcx = tc.getContext("2d");
+
+  window.addEventListener("resize", () => {
+    tc.width = window.innerWidth;
+    tc.height = window.innerHeight;
+  });
+
+  document.addEventListener("mousemove", e => {
+    mx = e.clientX; my = e.clientY;
+    // Spawn particle on move
+    trail.push({
+      x: mx, y: my,
+      size: Math.random() * 5 + 2,
+      alpha: 0.9,
+      color: colors[Math.floor(Math.random() * colors.length)],
+      vx: (Math.random() - 0.5) * 1.5,
+      vy: (Math.random() - 0.5) * 1.5 - 0.5,
+    });
+    if (trail.length > 60) trail.shift();
+  });
+
+  function drawTrail() {
+    tcx.clearRect(0, 0, tc.width, tc.height);
+    for (let i = trail.length - 1; i >= 0; i--) {
+      const p = trail[i];
+      p.alpha -= 0.035;
+      p.size -= 0.08;
+      p.x += p.vx;
+      p.y += p.vy;
+      if (p.alpha <= 0 || p.size <= 0) { trail.splice(i, 1); continue; }
+      tcx.save();
+      tcx.globalAlpha = p.alpha;
+      const g = tcx.createRadialGradient(p.x, p.y, 0, p.x, p.y, p.size);
+      g.addColorStop(0, p.color);
+      g.addColorStop(1, "transparent");
+      tcx.fillStyle = g;
+      tcx.beginPath();
+      tcx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+      tcx.fill();
+      tcx.restore();
+    }
+    requestAnimationFrame(drawTrail);
+  }
+  drawTrail();
+})();
+
 </script>
 </body>
 </html>
